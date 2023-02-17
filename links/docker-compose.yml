@@ -1,0 +1,52 @@
+version: '3.4'
+
+services:
+  sapi:
+    build: .
+    restart: always
+    container_name: epam-sapi
+    ports:
+      - 7777
+      - 7777:7777
+#    networks:
+#      - network
+    environment:
+      server.port: 7777
+      lastStop: true
+      nextUri: http://localhost:7777/hello
+      applicationName: sapi
+
+  dapi:
+    build: .
+    container_name: epam-dapi
+    ports:
+      - 8888
+      - 8888:8888
+ #   networks:
+ #     - network  
+    environment:
+      server.port: 8888
+      lastStop: false
+      nextUri: http://localhost:7777/callNext
+      applicationName: dapi
+    depends_on:
+      - sapi
+  
+  xapi:
+    build: .
+    container_name: epam-xapi
+    ports:
+      - 9999
+      - 9999:9999
+#    networks:
+#      - network
+    restart: always
+    environment:
+      server.port: 9999
+      lastStop: false
+      nextUri: http://localhost:8888/callNext
+      applicationName: xapi
+      sleepdurationInSec: 10
+    depends_on:
+      - sapi
+      - dapi

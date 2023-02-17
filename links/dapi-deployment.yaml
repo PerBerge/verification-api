@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: dapi
+  name: dapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: dapi
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/links-default: "true"
+        io.kompose.service: dapi
+    spec:
+      containers:
+        - env:
+            - name: applicationName
+              value: dapi
+            - name: lastStop
+              value: "false"
+            - name: nextUri
+              value: http://localhost:7777/callNext
+            - name: server.port
+              value: "8888"
+          image: dapi
+          name: epam-dapi
+          ports:
+            - containerPort: 8888
+          resources: {}
+      restartPolicy: Always
+status: {}

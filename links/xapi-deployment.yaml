@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: xapi
+  name: xapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: xapi
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/links-default: "true"
+        io.kompose.service: xapi
+    spec:
+      containers:
+        - env:
+            - name: applicationName
+              value: xapi
+            - name: lastStop
+              value: "false"
+            - name: nextUri
+              value: http://localhost:8888/callNext
+            - name: server.port
+              value: "9999"
+            - name: sleepdurationInSec
+              value: "10"
+          image: xapi
+          name: epam-xapi
+          ports:
+            - containerPort: 9999
+          resources: {}
+      restartPolicy: Always
+status: {}

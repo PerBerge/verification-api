@@ -1,0 +1,21 @@
+--xapi
+docker run -p 9999:9999 epam/xapi -i --server.port=9999 --lastStop=false --nextUri=http://localhost:8888/callNext
+
+--dapi
+docker run -p 8888:8888 epam/dapi -i --server.port=8888 --lastStop=false --nextUri=http://localhost:7777/callNext
+
+--sapi
+docker run -p 7777:7777 epam/sapi -i --server.port=7777 --lastStop=true
+
+
+--build jar and docker image:
+mvn clean install  
+ docker build -t epam/xapi .
+ 
+ --cmd springboot
+  mvn clean spring-boot:run -Dspring-boot.run.arguments=--nextUri=http://localhost:8080/hello,--lastStop=false
+  
+  
+      restart: always
+    command: node --inspect=0.0.0.0:9229 ./bin/www
+  

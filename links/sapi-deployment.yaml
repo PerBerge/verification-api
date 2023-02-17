@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: verification-ns
+  labels:
+    kuma.io/sidecar-injection: enabled
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+#  annotations:
+#    kompose.cmd: kompose convert
+#    kompose.version: 1.28.0 (HEAD)
+#  creationTimestamp: null
+  labels:
+    io.kompose.service: sapi
+  name: sapi
+  namespace: verification-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: sapi
+#  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (HEAD)
+#      creationTimestamp: null
+      labels:
+        io.kompose.network/links-default: "true"
+        io.kompose.service: sapi
+    spec:
+      containers:
+        - env:
+            - name: applicationName
+              value: sapi
+            - name: lastStop
+              value: "true"
+            - name: nextUri
+              value: http://localhost:7777/hello
+            - name: server.port
+              value: "7777"
+          image: "perfordummies/verification-api:latest"
+          name: epam-sapi
+          ports:
+            - containerPort: 7777
+          resources: {}
+      restartPolicy: Always
+status: {}
