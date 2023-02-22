@@ -228,6 +228,201 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "dapi-user-getToken",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "CPyNBiIniFaA2tr1GWyXvIeWeiW-o-WnZftxncdi",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "0oa4a4qybaFVUR0fY697",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "default"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "localhost",
+							"type": "default"
+						},
+						{
+							"key": "scope",
+							"value": "s_write",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "scope",
+							"value": "s_read",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://trial-5438341.okta.com/oauth2/aus4a156bcx2LK1IO697/v1/token",
+					"protocol": "https",
+					"host": [
+						"trial-5438341",
+						"okta",
+						"com"
+					],
+					"path": [
+						"oauth2",
+						"aus4a156bcx2LK1IO697",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "xapi-user-getToken",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "CPyNBiIniFaA2tr1GWyXvIeWeiW-o-WnZftxncdi",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "0oa4a4qybaFVUR0fY697",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "default"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "localhost",
+							"type": "default"
+						},
+						{
+							"key": "scope",
+							"value": "s_write",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "scope",
+							"value": "s_read",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://trial-5438341.okta.com/oauth2/aus4a156bcx2LK1IO697/v1/token",
+					"protocol": "https",
+					"host": [
+						"trial-5438341",
+						"okta",
+						"com"
+					],
+					"path": [
+						"oauth2",
+						"aus4a156bcx2LK1IO697",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ext-user-getToken",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "CPyNBiIniFaA2tr1GWyXvIeWeiW-o-WnZftxncdi",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "0oa4a4qybaFVUR0fY697",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "default"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "localhost",
+							"type": "default"
+						},
+						{
+							"key": "scope",
+							"value": "s_write",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "scope",
+							"value": "s_read",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://trial-5438341.okta.com/oauth2/aus4a156bcx2LK1IO697/v1/token",
+					"protocol": "https",
+					"host": [
+						"trial-5438341",
+						"okta",
+						"com"
+					],
+					"path": [
+						"oauth2",
+						"aus4a156bcx2LK1IO697",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

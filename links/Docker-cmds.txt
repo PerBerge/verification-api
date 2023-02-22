@@ -19,3 +19,4 @@ mvn clean install
       restart: always
     command: node --inspect=0.0.0.0:9229 ./bin/www
   
+  docker build -t perfordummies/verification-api .
