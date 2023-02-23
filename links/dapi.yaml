@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: travelers-demo
+  labels:
+    kuma.io/sidecar-injection: enabled
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-dapi
+  namespace: travelers-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-dapi
+  template:
+    metadata:
+      labels:
+        app: demo-dapi
+    spec:
+      containers:
+        - env:
+            - name: applicationName
+              value: demo-dapi
+            - name: lastStop
+              value: "true"
+            - name: nextUri
+              value: http://localhost:7777/hello
+            - name: server.port
+              value: "8888"
+          image: "perfordummies/verification-api:latest"
+          name: epam-dapi
+          ports:
+            - containerPort: 8888
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-dapi
+  namespace: travelers-demo
+spec:
+  selector:
+    app: demo-dapi
+  ports:
+  - protocol: TCP
+    appProtocol: http
+    port: 8888

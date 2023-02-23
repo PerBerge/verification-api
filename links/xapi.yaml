@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: travelers-demo
+  labels:
+    kuma.io/sidecar-injection: enabled
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-xapi
+  namespace: travelers-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-xapi
+  template:
+    metadata:
+      labels:
+        app: demo-xapi
+    spec:
+      containers:
+        - env:
+            - name: applicationName
+              value: demo-xapi
+            - name: lastStop
+              value: "true"
+            - name: nextUri
+              value: http://localhost:7777/hello
+            - name: server.port
+              value: "9999"
+          image: "perfordummies/verification-api:latest"
+          name: epam-xapi
+          ports:
+            - containerPort: 9999
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-xapi
+  namespace: travelers-demo
+spec:
+  selector:
+    app: demo-sapi
+  ports:
+  - protocol: TCP
+    appProtocol: http
+    port: 9999
